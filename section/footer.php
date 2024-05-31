@@ -1,32 +1,44 @@
+<?php
+    require 'dashboard/config/koneksi.php';
+
+    $sql = "SELECT * FROM tb_kategori";
+    $res = mysqli_query($koneksi, $sql);
+
+    $sql2 = "SELECT id, judul_post FROM tb_post LIMIT 0, 4";
+    $res2 = mysqli_query($koneksi, $sql2);
+
+?>
+
 <footer>
     <div class="foot-wrap">
         <div class="sect-1">
             <h4>Berita Lokal</h4>
-            <p>Semua informasi terupdate ada disini</p>
+            <p class="deskripsi">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi blanditiis possimus alias eaque laboriosam maxime nobis incidunt sit officia aperiam non ducimus et optio accusamus, culpa quisquam impedit dolores facere. Iste, unde ducimus, saepe distinctio officiis perspiciatis sint. Minus magni repellendus iure.</p>
         </div>
         <div class="sect-2">
             <h5>Terpopuler</h5>
+            <?php  
+                while ($data = mysqli_fetch_assoc($res2)) :
+            ?>
             <div class="link">
-                <a href="https://www.cnnindonesia.com/gaya-hidup/20220421162010-255-787910/jebakan-lingkaran-setan-gerd-dan-kecemasan-yang-tak-berujung" target="_blank">
-                Jebakan 'Lingkaran Setan' GERD dan Kecemasan yang Tak Berujung</a>
+                <a href="index.php?id_artikel=<?= $data['id']; ?>">
+                <i class="bi bi-newspaper me-2"></i><?= $data['judul_post']; ?></a>
             </div>
-            <div class="link">
-                <a href="https://www.cnnindonesia.com/gaya-hidup/20220421143146-267-787835/resep-praktis-sahur-tahu-telur-lada-hitam" target="_blank">
-                Resep Praktis Sahur: Tahu Telur Lada Hitam</a>
-            </div>
-            <div class="link">
-                <a href="https://www.cnnindonesia.com/gaya-hidup/20220426112057-255-789769/who-serukan-pentingnya-inovasi-dalam-pengendalian-malaria" target="_blank">
-                WHO Serukan Pentingnya Inovasi dalam Pengendalian Malaria</a> 
-            </div>                 
+            <?php  
+                endwhile;
+            ?>   
         </div>
         <div class="sect-3">
             <h5>Kategori</h5>
-            <div class="link-cat">
-                <a href="olahraga.html">Olahraga</a>
-            </div> 
-            <div class="link-cat">
-                <a href="teknologi.html">Teknologi</a> 
-            </div>   
+            <?php  
+                while ($data = mysqli_fetch_assoc($res)) :
+            ?>
+                <div class="link-cat">
+                    <a href="index.php?kategori=<?= $data['kategori']; ?>"><i class="bi bi-collection me-2"></i><?= $data['kategori']; ?></a>
+                </div> 
+            <?php  
+                endwhile;
+            ?>   
         </div>
     </div>
 </footer>  

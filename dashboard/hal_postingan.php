@@ -43,7 +43,7 @@
                                 <td><?= $no; ?></td>
                                 <td><?= $data['judul_post']; ?></td>
                                 <td class="text-center">
-                                    <img src="thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail" width="80" height="80" class="thumb">
+                                    <img src="thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail" width="80" height="80" class="thumb-post">
                                 </td>
                                 <td class="text-center"><?= $data['tanggal_post']; ?></td>
                                 <td class="w-50">
@@ -54,7 +54,26 @@
                                 <td><?= $data['kategori']; ?></td>
                                 <td class="d-block">
                                     <a href="index.php?page=edit_post&id=<?= $data['id']; ?>" class="btn btn-primary btn-sm w-100 mb-1">Edit</a>
-                                    <a href="config/proses_postingan.php?proses=hapus&id=<?= $data['id']; ?>" class="btn btn-primary btn-sm w-100">Hapus</a>
+                                    <button type="button" class="btn btn-primary btn-sm w-100" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $data['id']; ?>">Hapus</button>
+
+                                    <!-- Modal hapus -->
+                                    <div class="modal fade" id="exampleModal<?= $data['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Postingan</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                            Anda ingin menghapus postingan <?= $data['judul_post']; ?>?
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                            <a href="config/proses_postingan.php?proses=hapus&id=<?= $data['id']; ?>" class="btn btn-primary">Hapus</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </td>
                             </tr>
                         <?php 
@@ -67,7 +86,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal tambah -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">

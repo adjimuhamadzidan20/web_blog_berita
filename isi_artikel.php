@@ -20,7 +20,7 @@
         <h3><?= $data['judul_post']; ?></h3>
     </div>
     <div class="time-post">
-        <p><?= $data['kategori']; ?> | <?= $data['tanggal_post']; ?></p>
+        <p><i class="bi bi-collection"></i> <?= $data['kategori']; ?> | <i class="bi bi-calendar3"></i> <?= $data['tanggal_post']; ?></p>
     </div>
     <div>
         <img class="pict" src="dashboard/thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail">
@@ -30,10 +30,10 @@
     </div>
 
     <div class="Komentar">
-        <label for="komentar">Komentar</label>
+        <label for="komentar"><i class="bi bi-chat-square-text"></i> Komentar</label>
         <form action="dashboard/config/proses_komentar.php?proses=tambah&id=<?= $data['id']; ?>" method="post">
             <textarea id="komentar" placeholder="Komentar anda" name="komentar" required></textarea>
-            <button type="submit" class="submit-komen">Kirim</button>
+            <button type="submit" class="submit-komen"><i class="bi bi-send"></i> Kirim</button>
         </form>
     </div>
 </div>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="visitor-komen">
-                <?= $data2['komentar']; ?>
+                <i class="bi bi-chat-square-text me-2"></i><?= $data2['komentar']; ?>
             </div>
         </div>
     <?php 

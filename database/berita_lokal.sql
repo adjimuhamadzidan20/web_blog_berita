@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Bulan Mei 2024 pada 17.03
+-- Waktu pembuatan: 28 Bulan Mei 2024 pada 17.36
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 7.4.13
 
@@ -115,6 +115,27 @@ INSERT INTO `tb_post` (`id`, `judul_post`, `tanggal_post`, `thumbnail`, `artikel
 (8, 'Pemilu Presiden 2024', '2024-05-25', '66520d301fafb.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi blanditiis possimus alias eaque laboriosam maxime nobis incidunt sit officia aperiam non ducimus et optio accusamus, culpa quisquam impedit dolores facere. Iste, unde ducimus, saepe distinctio officiis perspiciatis sint. Minus magni repellendus iure. Quo, cum excepturi sint cumque quas, assumenda illum mollitia ea veritatis! Obcaecati temporibus possimus maiores eligendi tempore saepe! Eligendi officiis illum atque ipsum beatae, iste necessitatibus cupiditate blanditiis at minus alias, praesentium nulla esse tempore fugit earum iusto eaque, non ipsa quo, aspernatur sint animi vitae. Nihil, tenetur.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi blanditiis possimus alias eaque laboriosam maxime nobis incidunt sit officia aperiam non ducimus et optio accusamus, culpa quisquam impedit dolores facere. Iste, unde ducimus, saepe distinctio officiis perspiciatis sint. Minus magni repellendus iure. Quo, cum excepturi sint cumque quas, assumenda illum mollitia ea veritatis! Obcaecati temporibus possimus maiores eligendi tempore saepe Eligendi officiis illum atque ipsum beatae, iste necessitatibus cupiditate blanditiis at minus alias, praesentium nulla esse tempore fugit earum iusto eaque, non ipsa quo, aspernatur sint animi vitae. Nihil, tenetur.</p>', 18, '2024-05-25 18:09:20', '2024-05-25 18:09:40'),
 (9, 'Starlink Resmi Diluncurkan', '2024-05-26', '66534cdde7d41.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi blanditiis possimus alias eaque laboriosam maxime nobis incidunt sit officia aperiam non ducimus et optio accusamus, culpa quisquam impedit dolores facere. Iste, unde ducimus, saepe distinctio officiis perspiciatis sint. Minus magni repellendus iure. Quo, cum excepturi sint cumque quas, assumenda illum mollitia ea veritatis! Obcaecati temporibus possimus maiores eligendi tempore saepe! Eligendi officiis illum atque ipsum beatae, iste necessitatibus cupiditate blanditiis at minus alias, praesentium nulla esse tempore fugit earum iusto eaque, non ipsa quo, aspernatur sint animi vitae. Nihil, tenetur.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi blanditiis possimus alias eaque laboriosam maxime nobis incidunt sit officia aperiam non ducimus et optio accusamus, culpa quisquam impedit dolores facere. Iste, unde ducimus, saepe distinctio officiis perspiciatis sint. Minus magni repellendus iure. Quo, cum excepturi sint cumque quas, assumenda illum mollitia ea veritatis! Obcaecati temporibus possimus maiores eligendi tempore saepe! Eligendi officiis illum atque ipsum beatae, iste necessitatibus cupiditate blanditiis at minus alias, praesentium nulla esse tempore fugit earum iusto eaque, non ipsa quo, aspernatur sint animi vitae. Nihil, tenetur.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi blanditiis possimus alias eaque laboriosam maxime nobis incidunt sit officia aperiam non ducimus et optio accusamus, culpa quisquam impedit dolores facere. Iste, unde ducimus, saepe distinctio officiis perspiciatis sint. Minus magni repellendus iure. Quo, cum excepturi sint cumque quas, assumenda illum mollitia ea veritatis! Obcaecati temporibus possimus maiores eligendi tempore saepe! Eligendi officiis illum atque ipsum beatae, iste necessitatibus cupiditate blanditiis at minus alias, praesentium nulla esse tempore fugit earum iusto eaque, non ipsa quo, aspernatur sint animi vitae. Nihil, tenetur.</p>', 19, '2024-05-26 16:53:17', '2024-05-26 16:54:31');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_sidebar`
+--
+
+CREATE TABLE `tb_sidebar` (
+  `id` int(20) NOT NULL,
+  `id_sidepost` int(20) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_sidebar`
+--
+
+INSERT INTO `tb_sidebar` (`id`, `id_sidepost`, `created_at`) VALUES
+(7, 8, '2024-05-28 17:08:49'),
+(8, 9, '2024-05-28 17:08:49'),
+(9, 6, '2024-05-28 17:27:12');
+
 --
 -- Indexes for dumped tables
 --
@@ -147,6 +168,14 @@ ALTER TABLE `tb_post`
   ADD KEY `id_kategori_2` (`id_kategori`);
 
 --
+-- Indeks untuk tabel `tb_sidebar`
+--
+ALTER TABLE `tb_sidebar`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_sidepost` (`id_sidepost`),
+  ADD KEY `id_sidepost_2` (`id_sidepost`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -175,6 +204,12 @@ ALTER TABLE `tb_post`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT untuk tabel `tb_sidebar`
+--
+ALTER TABLE `tb_sidebar`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
@@ -189,6 +224,12 @@ ALTER TABLE `tb_komentar`
 --
 ALTER TABLE `tb_post`
   ADD CONSTRAINT `tb_post_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `tb_kategori` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tb_sidebar`
+--
+ALTER TABLE `tb_sidebar`
+  ADD CONSTRAINT `tb_sidebar_ibfk_1` FOREIGN KEY (`id_sidepost`) REFERENCES `tb_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

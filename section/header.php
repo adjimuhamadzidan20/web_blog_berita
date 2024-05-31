@@ -7,11 +7,13 @@
 ?>
 
 <div class="header">
-  <div class="title">
-    <h1>Berita Lokal</h1>
-  </div>
-  <div class="sub-title">
-    <p>Semua informasi terupdate ada disini</p>
+  <div class="judul-web-berita">
+    <div class="title">
+      <h1 class="text-uppercase">Berita Lokal</h1>
+    </div>
+    <div class="sub-title">
+      <p>Semua informasi terupdate ada disini</p>
+    </div>
   </div>
 </div>
 

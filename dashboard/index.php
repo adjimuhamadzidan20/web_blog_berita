@@ -9,13 +9,36 @@
         <title>Berita Lokal - Dashboard</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-        <link href="../css/home1.css" rel="stylesheet" />
+        <!-- <link href="../css/style.css" rel="stylesheet" /> -->
         <link rel="stylesheet" href="assets/summernote/summernote-bs4.min.css">
         <script src="assets/ckeditor5-build-classic/ckeditor.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+        <style>
+            .navbar-dark, .sb-sidenav-menu {
+                background-color: #000;
+            }
+
+            .data-artikel {
+                height: 280px;
+                overflow: scroll;
+                overflow-x: hidden;
+            }
+
+            .artikel-post {
+                height: 50px;
+                overflow: hidden;
+            }
+
+            .thumb-post {
+                object-fit: cover;
+                border: 1px solid lightgrey;
+                padding: 2px;
+            }
+        </style>
     </head>
     <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark">
 
             <!-- navbar -->
             <?php include 'section/navbar.php'; ?>

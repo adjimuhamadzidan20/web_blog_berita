@@ -19,6 +19,12 @@
 		}
 		else if ($_GET['page'] == 'komentar') {
 			include 'hal_komentar.php';
+		} 
+		else if ($_GET['page'] == 'sidebar_post') {
+			include 'hal_sidebar_post.php';
+		} 
+		else if ($_GET['page'] == 'footer_info') {
+			include 'hal_footer_info.php';
 		}
 	}
 	else {

@@ -27,8 +27,6 @@
         $sqlLimit = "SELECT tb_post.id, tb_post.judul_post, tb_post.tanggal_post, tb_post.thumbnail, tb_post.artikel_post, 
         tb_post.id_kategori, tb_kategori.kategori, tb_post.created_at FROM tb_post INNER JOIN tb_kategori 
         ON tb_post.id_kategori = tb_kategori.id WHERE kategori = '$kategori' LIMIT $awalData, $jmlDataHal";
-
-        $resSql = mysqli_query($koneksi, $sqlLimit);
     } 
     else {
         $sql = "SELECT tb_post.id, tb_post.judul_post, tb_post.tanggal_post, tb_post.thumbnail, tb_post.artikel_post, 
@@ -54,11 +52,11 @@
         $sqlLimit = "SELECT tb_post.id, tb_post.judul_post, tb_post.tanggal_post, tb_post.thumbnail, tb_post.artikel_post, 
         tb_post.id_kategori, tb_kategori.kategori, tb_post.created_at FROM tb_post INNER JOIN tb_kategori 
         ON tb_post.id_kategori = tb_kategori.id LIMIT $awalData, $jmlDataHal";
-
-        $resSql = mysqli_query($koneksi, $sqlLimit);
     }
 
     // $query = mysqli_query($koneksi, $sql);
+    $resSql = mysqli_query($koneksi, $sqlLimit);
+    
     $dataPost = [];
     while ($row = mysqli_fetch_assoc($resSql)) {
         $dataPost[] = $row; 
@@ -81,7 +79,7 @@
             <h3><?= $data['judul_post']; ?></h3>
         </div>
         <div class="time-post">
-            <p><?= $data['kategori']; ?> | <?= $data['tanggal_post']; ?></p>
+            <p><i class="bi bi-collection"></i> <?= $data['kategori']; ?> | <i class="bi bi-calendar3"></i> <?= $data['tanggal_post']; ?></p>
         </div>
         <div>
             <img class="pict" src="dashboard/thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail">
@@ -90,7 +88,7 @@
             <div class="artikel-desc">
                 <?= $data['artikel_post']; ?>
             </div>
-            <a href="index.php?id_artikel=<?= $data['id']; ?>">Selengkapnya</a>
+            <a href="index.php?id_artikel=<?= $data['id']; ?>"><i class="bi bi-arrow-right-square me-2"></i>Selengkapnya</a>
         </div>
     </div>
 <?php  
