@@ -1,7 +1,6 @@
-<?php  
+<?php
     $sql = "SELECT * FROM tb_kategori";
     $res = mysqli_query($koneksi, $sql);
-    
 ?>
 
 <div class="container-fluid px-3">
@@ -10,6 +9,19 @@
         <li class="breadcrumb-item active">Dashboard</li>
         <li class="breadcrumb-item active">Kategori</li>
     </ol>
+
+    <?php  
+        if (isset($_SESSION['status']) && isset($_SESSION['pesan'])) :
+    ?>
+        <div class="alert alert-<?= $_SESSION['status']; ?>" role="alert" id="alert">
+          <?= $_SESSION['pesan']; ?>
+        </div>
+    <?php 
+        endif;
+        unset($_SESSION['status']);
+        unset($_SESSION['pesan']);
+    ?>
+
     <div class="row">
         <div class="col">
             <div class="card-header d-flex justify-content-between">
@@ -17,7 +29,7 @@
                     <i class="fas fa-table me-1"></i>
                     Data Kategori Post
                 </div>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah</button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah <i class="fas fa-plus"></i></button>
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -40,8 +52,8 @@
                                 <td><?= $data['kategori']; ?></td>
                                 <td><?= $data['created_at']; ?></td>
                                 <td>
-                                    <a href="index.php?page=edit_kategori&id=<?= $data['id']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $data['id']; ?>">Hapus</button>
+                                    <a href="index.php?page=edit_kategori&id=<?= $data['id']; ?>" class="btn btn-primary btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $data['id']; ?>" title="Hapus"><i class="fas fa-trash"></i></button>
 
                                     <!-- Modal hapus -->
                                     <div class="modal fade" id="exampleModal<?= $data['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

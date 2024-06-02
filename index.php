@@ -19,11 +19,7 @@
     <div class="container">
         <!-- main -->
         <div class="main">
-
-            <!-- <div class="highlight">
-                <h2>News Highlight</h2>
-            </div> -->
-
+            
             <?php include 'route_artikel.php'; ?>
 
         </div>

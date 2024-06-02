@@ -1,5 +1,6 @@
 <?php  
 	require 'koneksi.php';
+	session_start();
 
 	if (isset($_GET['proses'])) {
 		if ($_GET['proses'] == 'tambah') {
@@ -10,19 +11,39 @@
 			
 			for ($i = 0; $i < $jmlDataTerpilih; $i++) { 
 				$sql = "INSERT INTO tb_sidebar VALUES ('', '$idArtikel[$i]', '$created')";
-				mysqli_query($koneksi, $sql);
+				$result = mysqli_query($koneksi, $sql);
 			}
 
-			header('Location: ../index.php?page=sidebar_post');
-			exit();
+			if ($result) {
+				$_SESSION['status'] = 'success';
+				$_SESSION['pesan'] = 'Post Sidebar berhasil ditambahkan!';
+				header('Location: ../index.php?page=sidebar_post');
+				exit();
+			} 
+			else {
+				$_SESSION['status'] = 'danger';
+				$_SESSION['pesan'] = 'Post Sidebar gagal ditambahkan!';
+				header('Location: ../index.php?page=sidebar_post');
+				exit();
+			}
 		} 
 		else if ($_GET['proses'] == 'hapus') {
 			$id = $_GET['id'];
 			$sql = "DELETE FROM tb_sidebar WHERE id = '$id'";
-	    mysqli_query($koneksi, $sql);
+	    $result = mysqli_query($koneksi, $sql);
 
-	    header('Location: ../index.php?page=sidebar_post');
-	    exit();
+	    if ($result) {
+				$_SESSION['status'] = 'success';
+				$_SESSION['pesan'] = 'Postingan berhasil terhapus dari sidebar!';
+				header('Location: ../index.php?page=sidebar_post');
+				exit();
+			} 
+			else {
+				$_SESSION['status'] = 'danger';
+				$_SESSION['pesan'] = 'Postingan gagal terhapus dari sidebar!';
+				header('Location: ../index.php?page=sidebar_post');
+				exit();
+			}
 		}
 	}
 	

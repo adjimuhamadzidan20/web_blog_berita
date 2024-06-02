@@ -12,6 +12,19 @@
         <li class="breadcrumb-item active">Dashboard</li>
         <li class="breadcrumb-item active">Komentar</li>
     </ol>
+
+    <?php  
+        if (isset($_SESSION['status']) && isset($_SESSION['pesan'])) :
+    ?>
+        <div class="alert alert-<?= $_SESSION['status']; ?>" role="alert" id="alert">
+          <?= $_SESSION['pesan']; ?>
+        </div>
+    <?php 
+        endif;
+        unset($_SESSION['status']);
+        unset($_SESSION['pesan']);
+    ?>
+
     <div class="row">
         <div class="col">
             <div class="card-header">
@@ -41,8 +54,8 @@
                             <td><?= $data['judul_post']; ?></td>
                             <td><?= $data['tanggal_komentar']; ?></td>
                             <td>
-                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $data['id']; ?>">Lihat</button>
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalHapus<?= $data['id']; ?>">Hapus</button>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $data['id']; ?>" title="Lihat"><i class="fas fa-eye"></i></button>
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalHapus<?= $data['id']; ?>" title="Hapus"><i class="fas fa-trash"></i></button>
 
                                 <!-- Modal hapus -->
                                 <div class="modal fade" id="exampleModalHapus<?= $data['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -63,7 +76,7 @@
                                   </div>
                                 </div>
 
-                                <!-- Modal komentar -->
+                                <!-- Modal lihat komentar -->
                                 <div class="modal fade" id="exampleModal<?= $data['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">

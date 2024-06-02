@@ -25,6 +25,9 @@
 		} 
 		else if ($_GET['page'] == 'footer_info') {
 			include 'hal_footer_info.php';
+		} 
+		else {
+			include '404.php';
 		}
 	}
 	else {

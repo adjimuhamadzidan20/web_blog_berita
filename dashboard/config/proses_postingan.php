@@ -1,5 +1,6 @@
 <?php  
 	require 'koneksi.php';
+	session_start();
 
 	if (isset($_GET['proses'])) {
 		if ($_GET['proses'] == 'tambah') {
@@ -19,9 +20,8 @@
 			$ext = pathinfo($namaThumb, PATHINFO_EXTENSION);
 
 			if ($sizeThumb > $thumbSize) {
-				echo "<script>
-					alert('Ukuran thumbnail maks 1MB');
-				</script>";
+				$_SESSION['status'] = 'warning';
+				$_SESSION['pesan'] = 'Ukuran thumbnail maks 1MB!';
 
 				header('Location: ../index.php?page=postingan');
 				exit();
@@ -33,10 +33,20 @@
 
 				$sql = "INSERT INTO tb_post VALUES ('', '$judul', '$tanggalPost', '$namaFileThumb', '$artikel', '$kategori', 
 				'$created', '')";
-				mysqli_query($koneksi, $sql);
+				$result = mysqli_query($koneksi, $sql);
 
-				header('Location: ../index.php?page=postingan');
-				exit();
+				if ($result) {
+					$_SESSION['status'] = 'success';
+					$_SESSION['pesan'] = 'Postingan berhasil ditambahkan!';
+					header('Location: ../index.php?page=postingan');
+					exit();
+				} 
+				else {
+					$_SESSION['status'] = 'danger';
+					$_SESSION['pesan'] = 'Postingan gagal ditambahkan!';
+					header('Location: ../index.php?page=postingan');
+					exit();
+				}
 			}
 		} 
 		else if ($_GET['proses'] == 'edit') {
@@ -60,21 +70,30 @@
 				$sql = "UPDATE tb_post SET judul_post = '$judul', tanggal_post = '$tanggalPost', thumbnail = '$thumbLama', 
 				artikel_post = '$artikel', id_kategori = '$kategori', created_at = '$created', updated_at = '$updated' 
 				WHERE id = '$id'";
-				mysqli_query($koneksi, $sql);
+				$result = mysqli_query($koneksi, $sql);
 
-				header('Location: ../index.php?page=postingan');
-				exit();
+				if ($result) {
+					$_SESSION['status'] = 'success';
+					$_SESSION['pesan'] = 'Postingan berhasil terubah!';
+					header('Location: ../index.php?page=postingan');
+					exit();
+				} 
+				else {
+					$_SESSION['status'] = 'danger';
+					$_SESSION['pesan'] = 'Postingan gagal terubah!';
+					header('Location: ../index.php?page=postingan');
+					exit();
+				}
 			} 
 			else {
 				$thumbSize = 1048000;
 				$ext = pathinfo($namaThumb, PATHINFO_EXTENSION);
 
 				if ($sizeThumb > $thumbSize) {
-					echo "<script>
-						alert('Ukuran thumbnail maks 1MB');
-					</script>";
+					$_SESSION['status'] = 'warning';
+					$_SESSION['pesan'] = 'Ukuran thumbnail maks 1MB!';
 
-					header('Location: ../index.php?page=postingan');
+					header('Location: ../index.php?page=edit_post&id='. $id);
 					exit();
 				} 
 				else {
@@ -85,20 +104,49 @@
 					$sql = "UPDATE tb_post SET judul_post = '$judul', tanggal_post = '$tanggalPost', thumbnail = '$namaFileThumb', 
 					artikel_post = '$artikel', id_kategori = '$kategori', created_at = '$created', updated_at = '$updated' 
 					WHERE id = '$id'";
-					mysqli_query($koneksi, $sql);
+					$result = mysqli_query($koneksi, $sql);
 
-					header('Location: ../index.php?page=postingan');
-					exit();
+					if (isset($thumbLama)) {
+				  	unlink('../thumbnail/'. $thumbLama);
+				  }
+
+					if ($result) {
+						$_SESSION['status'] = 'success';
+						$_SESSION['pesan'] = 'Postingan berhasil terubah!';
+						header('Location: ../index.php?page=postingan');
+						exit();
+					} 
+					else {
+						$_SESSION['status'] = 'danger';
+						$_SESSION['pesan'] = 'Postingan gagal terubah!';
+						header('Location: ../index.php?page=postingan');
+						exit();
+					}
 				}
 			}
 		}
 		else if ($_GET['proses'] == 'hapus') {
 			$id = $_GET['id'];
+			$thumb = $_GET['thumbnail'];
 			$sql = "DELETE FROM tb_post WHERE id = '$id'";
-	    mysqli_query($koneksi, $sql);
+	    $result = mysqli_query($koneksi, $sql);
 
-	    header('Location: ../index.php?page=postingan');
-	    exit();
+	    if (isset($thumb)) {
+			  	unlink('../thumbnail/'. $thumb);
+			  }
+
+	    if ($result) {
+				$_SESSION['status'] = 'success';
+				$_SESSION['pesan'] = 'Postingan berhasil terhapus!';
+				header('Location: ../index.php?page=postingan');
+				exit();
+			} 
+			else {
+				$_SESSION['status'] = 'danger';
+				$_SESSION['pesan'] = 'Postingan gagal terhapus!';
+				header('Location: ../index.php?page=postingan');
+				exit();
+			}
 		}
 	}
 

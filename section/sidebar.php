@@ -4,17 +4,16 @@
     $sql = "SELECT tb_sidebar.id, tb_sidebar.id_sidepost, tb_post.judul_post, tb_post.tanggal_post, tb_post.thumbnail, 
     tb_post.artikel_post, tb_sidebar.created_at FROM tb_sidebar INNER JOIN tb_post ON tb_sidebar.id_sidepost = tb_post.id";
     $query = mysqli_query($koneksi, $sql);
-
     $jmlData = mysqli_affected_rows($koneksi);
-
+    
 ?>    
 
 <div class="side-bar">
 
     <div class="search">
-        <form class="d-flex" action="" method="get">
+        <form class="d-flex" method="post">
             <input class="form-control me-2 rounded-0 " type="search" placeholder="Cari sesuatu.." aria-label="Search" name="cari">
-            <button class="btn rounded-0 cari" type="submit" style="background-color: black; color: white;">Cari</button>
+            <button class="btn rounded-0 cari" type="submit" name="submit" style="background-color: black; color: white;">Cari</button>
         </form>
     </div>
     
@@ -34,10 +33,10 @@
                 <h5><?= $data['judul_post']; ?></h5>
             </div>
             <div class="time-post">
-                <p><i class="bi bi-calendar3"></i> <?= $data['tanggal_post']; ?></p>
+                <p><i class="bi bi-calendar3"></i> Posting pada <?= $data['tanggal_post']; ?></p>
             </div>
             <div>
-                <img class="pict" src="dashboard/thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail">
+                <img class="pict img-thumbnail" src="dashboard/thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail">
             </div>
             <div class="desc">
                 <div class="side-artikel-desc">

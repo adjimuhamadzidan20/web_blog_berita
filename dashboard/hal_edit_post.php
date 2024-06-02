@@ -15,6 +15,19 @@
         <li class="breadcrumb-item active">Dashboard</li>
         <li class="breadcrumb-item active">Edit Postingan</li>
     </ol>
+
+    <?php  
+      if (isset($_SESSION['status']) && isset($_SESSION['pesan'])) :
+    ?>
+      <div class="alert alert-<?= $_SESSION['status']; ?>" role="alert" id="alert">
+        <?= $_SESSION['pesan']; ?>
+      </div>
+    <?php 
+      endif;
+      unset($_SESSION['status']);
+      unset($_SESSION['pesan']);
+    ?>
+
     <div class="row">
         <div class="col">
             <div class="card-header">
@@ -36,6 +49,7 @@
                       <label for="exampleFormControlInput2" class="form-label">Thumbnail</label><br>
                       <img src="thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail" width="120" height="120" class="mb-2 img-thumbnail">
                       <input type="file" class="form-control" name="thumbnail" accept=".jpg"></input>
+                      <i class="text-muted small">*Ukuran file thumbnail maksimal 1MB</i>
                     </div>
                     <div class="mb-3">
                       <label for="artikel" class="form-label">Artikel Post</label>

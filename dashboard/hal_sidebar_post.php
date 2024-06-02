@@ -13,6 +13,19 @@
         <li class="breadcrumb-item active">Dashboard</li>
         <li class="breadcrumb-item active">Sidebar Post</li>
     </ol>
+
+    <?php  
+        if (isset($_SESSION['status']) && isset($_SESSION['pesan'])) :
+    ?>
+        <div class="alert alert-<?= $_SESSION['status']; ?>" role="alert" id="alert">
+          <?= $_SESSION['pesan']; ?>
+        </div>
+    <?php 
+        endif;
+        unset($_SESSION['status']);
+        unset($_SESSION['pesan']);
+    ?>
+
     <div class="row">
         <div class="col">
             <div class="accordion" id="accordionExample">

@@ -54,12 +54,21 @@
         ON tb_post.id_kategori = tb_kategori.id LIMIT $awalData, $jmlDataHal";
     }
 
-    // $query = mysqli_query($koneksi, $sql);
     $resSql = mysqli_query($koneksi, $sqlLimit);
-    
     $dataPost = [];
     while ($row = mysqli_fetch_assoc($resSql)) {
         $dataPost[] = $row; 
+    }
+
+    // pencarian data postingan
+    if (isset($_POST['submit'])) {
+        $kolomPencarian = $_POST['cari'];
+        
+        $querySql = "SELECT tb_post.id, tb_post.judul_post, tb_post.tanggal_post, tb_post.thumbnail, tb_post.artikel_post, 
+        tb_post.id_kategori, tb_kategori.kategori, tb_post.created_at FROM tb_post INNER JOIN tb_kategori 
+        ON tb_post.id_kategori = tb_kategori.id WHERE tb_post.judul_post LIKE '%$kolomPencarian%'";
+        
+        $dataPost = mysqli_query($koneksi, $querySql);
     }
 ?>
 
@@ -68,7 +77,7 @@
     if ($jmlPost == 0) {
 ?>
     <div class="articel">
-        Artikel pada kategori tersebut tidak ada..
+        Konten artikel tidak ditemukan..
     </div>
 <?php
     } else {
@@ -82,7 +91,7 @@
             <p><i class="bi bi-collection"></i> <?= $data['kategori']; ?> | <i class="bi bi-calendar3"></i> <?= $data['tanggal_post']; ?></p>
         </div>
         <div>
-            <img class="pict" src="dashboard/thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail">
+            <img class="pict img-thumbnail" src="dashboard/thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail">
         </div>
         <div class="desc">
             <div class="artikel-desc">

@@ -1,5 +1,6 @@
 <?php  
 	require 'koneksi.php';
+	session_start();
 
 	if (isset($_GET['proses'])) {
 		if ($_GET['proses'] == 'tambah') {
@@ -18,10 +19,20 @@
 		else if ($_GET['proses'] == 'hapus') {
 			$id = $_GET['id'];
 			$sql = "DELETE FROM tb_komentar WHERE id = '$id'";
-	    mysqli_query($koneksi, $sql);
+	    $result = mysqli_query($koneksi, $sql);
 
-	    header('Location: ../index.php?page=komentar');
-	    exit();
+	    if ($result) {
+				$_SESSION['status'] = 'success';
+				$_SESSION['pesan'] = 'Komentar berhasil terhapus!';
+				header('Location: ../index.php?page=komentar');
+	    	exit();
+			} 
+			else {
+				$_SESSION['status'] = 'danger';
+				$_SESSION['pesan'] = 'Komentar gagal terhapus!';
+				header('Location: ../index.php?page=komentar');
+	    	exit();
+			}
 		}
 	}
 	

@@ -11,6 +11,19 @@
         <li class="breadcrumb-item active">Dashboard</li>
         <li class="breadcrumb-item active">Postingan</li>
     </ol>
+
+    <?php  
+        if (isset($_SESSION['status']) && isset($_SESSION['pesan'])) :
+    ?>
+        <div class="alert alert-<?= $_SESSION['status']; ?>" role="alert" id="alert">
+          <?= $_SESSION['pesan']; ?>
+        </div>
+    <?php 
+        endif;
+        unset($_SESSION['status']);
+        unset($_SESSION['pesan']);
+    ?>
+
     <div class="row">
         <div class="col">
             <div class="card-header d-flex justify-content-between">
@@ -18,17 +31,17 @@
                     <i class="fas fa-table me-1"></i>
                     Data Postingan Artikel
                 </div>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah</button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah <i class="fas fa-plus"></i></button>
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
                             <th nowrap="nowrap" class="text-center">No</th>
-                            <th nowrap="nowrap" class="text-center">Judul Post</th>
+                            <th nowrap="nowrap" class="text-center">Judul</th>
                             <th nowrap="nowrap" class="text-center">Thumbnail</th>
                             <th nowrap="nowrap" class="text-center">Tanggal Post</th>
-                            <th nowrap="nowrap" class="text-center">Artikel Post</th>
+                            <th nowrap="nowrap" class="text-center">Artikel</th>
                             <th nowrap="nowrap" class="text-center">Kategori</th>
                             <th nowrap="nowrap" class="text-center">Opsi</th>
                         </tr>
@@ -41,7 +54,7 @@
                         ?>
                             <tr>
                                 <td><?= $no; ?></td>
-                                <td><?= $data['judul_post']; ?></td>
+                                <td class="w-25"><?= $data['judul_post']; ?></td>
                                 <td class="text-center">
                                     <img src="thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail" width="80" height="80" class="thumb-post">
                                 </td>
@@ -51,10 +64,10 @@
                                         <?= $data['artikel_post']; ?>
                                     </div>
                                 </td>
-                                <td><?= $data['kategori']; ?></td>
-                                <td class="d-block">
-                                    <a href="index.php?page=edit_post&id=<?= $data['id']; ?>" class="btn btn-primary btn-sm w-100 mb-1">Edit</a>
-                                    <button type="button" class="btn btn-primary btn-sm w-100" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $data['id']; ?>">Hapus</button>
+                                <td class="text-center"><?= $data['kategori']; ?></td>
+                                <td nowrap="nowrap">
+                                    <a href="index.php?page=edit_post&id=<?= $data['id']; ?>" class="btn btn-primary btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $data['id']; ?>" title="Hapus"><i class="fas fa-trash"></i></button>
 
                                     <!-- Modal hapus -->
                                     <div class="modal fade" id="exampleModal<?= $data['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -65,11 +78,11 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                           </div>
                                           <div class="modal-body">
-                                            Anda ingin menghapus postingan <?= $data['judul_post']; ?>?
+                                            Anda ingin menghapus postingan ini?
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                            <a href="config/proses_postingan.php?proses=hapus&id=<?= $data['id']; ?>" class="btn btn-primary">Hapus</a>
+                                            <a href="config/proses_postingan.php?proses=hapus&id=<?= $data['id']; ?>&thumbnail=<?= $data['thumbnail']; ?>" class="btn btn-primary">Hapus</a>
                                           </div>
                                         </div>
                                       </div>
@@ -102,7 +115,8 @@
             </div>
             <div class="mb-3">
               <label for="exampleFormControlInput2" class="form-label">Thumbnail</label>
-              <input type="file" class="form-control" name="thumbnail" accept=".jpg"></input>
+              <input type="file" class="form-control" name="thumbnail" accept=".jpg" required></input>
+              <i class="text-muted small">*Ukuran file thumbnail maksimal 1MB</i>
             </div>
             <div class="mb-3">
               <label for="artikel" class="form-label">Artikel Post</label>

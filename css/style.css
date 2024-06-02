@@ -11,7 +11,7 @@
     background-position: center;
     padding: 33px 0 33px 0;
     color: white;
-    height: 240px;
+    height: 220px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,7 +44,6 @@
 
 .container {
     width: 85%;
-    /* background-color: lightgray; */
     display: flex;
     margin: 20px auto;
     padding: 10px;
@@ -91,40 +90,35 @@
     object-fit: cover;
 }
 
-.artikel-post {
-    height: 50px;
-    overflow: hidden;
-}
-
-.artikel-desc {
+.container .main .articel .desc .artikel-desc {
     height: 75px;
     overflow: hidden;
     margin-bottom: 30px;
 }
 
-.data-komentar {
+.container .main .articel-komentar .data-komentar {
     margin-bottom: 15px;
 }
 
-.visitor {
+.container .main .articel-komentar .data-komentar .visitor {
     display: flex;
 }
 
-.visitor-nama {
+.container .main .articel-komentar .data-komentar .visitor .visitor-nama {
     margin-right: 8px;
 }
 
-.visitor-nama img {
+.container .main .articel-komentar .data-komentar .visitor .visitor-nama img {
     width: 30px;
     height: 30px;
 }
 
-.visitor-rinci {
+.container .main .articel-komentar .data-komentar .visitor .visitor-rinci {
     display: flex;
     align-items: center;
 }
 
-.visitor-komen {
+.container .main .articel-komentar .data-komentar .visitor-komen {
     border: 1px solid lightgrey;
     padding: 5px 8px;
     margin-top: 10px;
@@ -133,7 +127,6 @@
 /* Komentar */
 .container .main .articel .Komentar {
     margin-top: 40px;
-    /* background-color: lightgrey; */
     padding: 0 0 10px 0;
 }
 
@@ -190,10 +183,6 @@
     margin-bottom: 30px;
 }
 
-/*.container .side-bar .popular .desc p {
-    margin-bottom: 22px;
-}*/
-
 .container .side-bar .popular .desc a {
     background-color: black;
     padding: 7px 12px;
@@ -225,11 +214,9 @@ footer {
 footer .foot-wrap {
     display: flex;
     justify-content: space-between;
-    /* background-color: gray; */
 }
 
 footer .sect-1, .sect-2, .sect-3 {
-    /* background-color: grey; */
     width: 350px;
 }
 
@@ -270,7 +257,6 @@ footer .sect-3 .link-cat {
 /* responsive */
 @media screen and (max-width: 1024px) {
     footer .sect-1, .sect-2, .sect-3 {
-        /* background-color: grey; */
         width: 250px;
     }
 }
@@ -289,55 +275,36 @@ footer .sect-3 .link-cat {
     }
 
     footer .foot-wrap {
-        /* background-color: gray; */
         flex-direction: column;
         align-items: center;
-        text-align: center;
     }
 
     footer .sect-1, .sect-2, .sect-3 {
-        /* background-color: grey; */
-        width: 60%;
+        width: 70%;
         margin-bottom: 20px;
     }
 }
 
 @media screen and (max-width: 800px) {
-    .container .main .ke-1 .pict {
-        height: 300px;
-    }
-    
-    .container .main .ke-2 .pict {
-        height: 300px;
-    }
-    
-    .container .main .ke-3 .pict {
+    .container .main .articel .pict {
         height: 300px;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .container .main .ke-1 .pict {
-        height: 200px;
-    }
-    
-    .container .main .ke-2 .pict {
-        height: 200px;
-    }
-    
-    .container .main .ke-3 .pict {
+    .container .main .articel .pict {
         height: 200px;
     }
 
-    .container .side-bar .articel-post-1 .pict {
+    .container .side-bar .articel-post .pict {
         height: 150px;
     }
-    
-    .container .side-bar .articel-post-2 .pict {
-        height: 150px;
+
+    footer .sect-1, .sect-2, .sect-3 {
+        width: 100%;
     }
-    
-    .container .side-bar .articel-post-3 .pict {
-        height: 150px;
+
+    footer {
+        padding: 40px 35px;
     }
 }

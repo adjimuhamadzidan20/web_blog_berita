@@ -1,0 +1,32 @@
+.navbar-dark, .sb-sidenav-menu {
+    background-color: #000;
+}
+
+.data-artikel {
+    height: 280px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.artikel-post {
+    height: 50px;
+    overflow: hidden;
+}
+
+/*.artikel-post h1, h2, h3, h4, h5, h6 {
+    font-size: 16px;
+    font-weight: normal;
+}*/
+
+.thumb-post {
+    object-fit: cover;
+    border: 1px solid lightgrey;
+    padding: 2px;
+}
+
+.isi-post {
+    max-height: 200vh;
+    overflow-y: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+}

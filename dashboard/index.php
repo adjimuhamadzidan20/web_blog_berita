@@ -1,41 +1,29 @@
+<?php  
+    session_start();
+
+    if (!isset($_SESSION['login'])) {
+        header('Location: ../login.php');
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta name="description" content="berita_lokal" />
+        <meta name="author" content="berita_lokal" />
         <title>Berita Lokal - Dashboard</title>
+        
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-        <!-- <link href="../css/style.css" rel="stylesheet" /> -->
+        <link href="css/style_dashboard.css" rel="stylesheet" />
         <link rel="stylesheet" href="assets/summernote/summernote-bs4.min.css">
+
         <script src="assets/ckeditor5-build-classic/ckeditor.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-
-        <style>
-            .navbar-dark, .sb-sidenav-menu {
-                background-color: #000;
-            }
-
-            .data-artikel {
-                height: 280px;
-                overflow: scroll;
-                overflow-x: hidden;
-            }
-
-            .artikel-post {
-                height: 50px;
-                overflow: hidden;
-            }
-
-            .thumb-post {
-                object-fit: cover;
-                border: 1px solid lightgrey;
-                padding: 2px;
-            }
-        </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark">
@@ -86,5 +74,17 @@
                 } );
         </script>
 
+        <script>
+            let popup = document.getElementById('alert');
+            if (popup.style.display = 'block') {
+                setTimeout(function() {
+                    popup.style.opacity = '0'
+                    popup.style.transition = 'opacity 1s ease-in-out';
+                    setTimeout(function() {
+                        popup.style.display = 'none';
+                    }, 1000)
+                }, 1000);
+            }
+        </script>
     </body>
 </html>
