@@ -3,7 +3,7 @@
 
 <!-- Sidebar Toggle-->
 <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-<span class="ms-3 text-white"><?= $_SESSION['nama_admin']; ?> | Admin</span>
+<span class="ms-3 text-white d-none d-lg-block"><?= $_SESSION['nama_admin']; ?> | Admin</span>
 
 <!-- Navbar Search-->
 <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></form>
@@ -13,6 +13,10 @@
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw ms-3"></i></a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li>
+                <span class="dropdown-item d-block d-lg-none"><?= $_SESSION['nama_admin']; ?></span>
+            </li>
+            <li class="d-block d-lg-none"><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="config/proses_logout.php"><i class="fas fa-sign-out fa-fw"></i> Logout</a></li>
         </ul>
     </li>

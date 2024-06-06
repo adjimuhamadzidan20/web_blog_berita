@@ -1,5 +1,6 @@
 <?php  
 	require 'koneksi.php';
+	error_reporting(E_ERROR | E_WARNING);
 
 	if (isset($_GET['page'])) {
 	 	if ($_GET['page'] == 'dashboard') {

@@ -6,7 +6,7 @@
 		if ($_GET['proses'] == 'tambah') {
 			$date = date_create();
 
-			$judul = $_POST['judul'];
+			$judul = htmlspecialchars($_POST['judul']);
 			$artikel = $_POST['artikel'];
 			$kategori = $_POST['kategori'];
 			$tanggalPost = date_format($date, 'Y-m-d');
@@ -53,7 +53,7 @@
 			$date = date_create();
 
 			$id = $_POST['id'];
-			$judul = $_POST['judul'];
+			$judul = htmlspecialchars($_POST['judul']);
 			$artikel = $_POST['artikel'];
 			$kategori = $_POST['kategori'];
 			$tanggalPost = $_POST['tanggal'];

@@ -77,7 +77,7 @@
     if ($jmlPost == 0) {
 ?>
     <div class="articel">
-        Konten artikel tidak ditemukan..
+        Konten artikel tidak tersedia..
     </div>
 <?php
     } else {

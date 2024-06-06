@@ -6,7 +6,7 @@
 		if ($_GET['proses'] == 'tambah') {
 			$date = date_create();
 			$idPost = $_GET['id'];
-			$komentar = $_POST['komentar'];
+			$komentar = htmlspecialchars($_POST['komentar']);
 			$tglKomen = date_format($date, 'Y-m-d H:i:s');
 			$created = date_format($date, 'Y-m-d H:i:s');
 

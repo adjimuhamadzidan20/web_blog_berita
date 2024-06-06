@@ -1,5 +1,6 @@
 <?php  
     session_start();
+    error_reporting(E_ERROR | E_WARNING);
 
     if (isset($_SESSION['login'])) {
         header('Location: dashboard/index.php');
@@ -25,8 +26,14 @@
                 background-size: cover;
             }
 
+            .judul-header {
+                background-color: black;
+                color: white;
+            }
+
             .form-login {
                 margin-top: 80px;
+                margin-bottom: 80px;
             }
 
             .btn-dark {
@@ -48,8 +55,8 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-0 form-login">
-                                    <div class="card-header">
+                                <div class="card border-0 rounded form-login">
+                                    <div class="card-header judul-header">
                                         <h4 class="text-center font-weight-light my-3">BERITA LOKAL</h4>
                                     </div>
                                     <div class="card-body">
@@ -76,7 +83,7 @@
                                                 <label for="inputPassword">Password</label>
                                             </div>
                                             <div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberme" type="checkbox" value="" />
+                                                <input class="form-check-input" id="inputRememberme" type="checkbox" name="remember" />
                                                 <label class="form-check-label" for="inputRememberme">Remember Me</label>
                                             </div>
                                             <div class="mt-4 mb-0">
@@ -96,9 +103,9 @@
             <div id="layoutAuthentication_footer">
                 <footer class="py-3 mt-auto">
                     <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
+                        <div class="d-flex align-items-center justify-content-center justify-content-lg-between small">
                             <div class="text-white">Copyright &copy; Berita Lokal 2022 - <?= date('Y'); ?></div>
-                            <div>
+                            <div class="d-none d-lg-block">
                                 <a href="#" class="text-white">Privacy Policy</a>
                                 &middot;
                                 <a href="#" class="text-white">Terms &amp; Conditions</a>

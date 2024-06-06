@@ -16,12 +16,9 @@
         <meta name="description" content="berita_lokal" />
         <meta name="author" content="berita_lokal" />
         <title>Berita Lokal - Dashboard</title>
-        
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/style_dashboard.css" rel="stylesheet" />
-        <link rel="stylesheet" href="assets/summernote/summernote-bs4.min.css">
-
         <script src="assets/ckeditor5-build-classic/ckeditor.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -85,6 +82,150 @@
                     }, 1000)
                 }, 1000);
             }
+        </script>
+
+        <script type="text/javascript">
+            let pesan = document.getElementById('pesan');
+            let notif = document.getElementById('notif_modal');
+            notif.style.display = 'none';
+
+            function validasiKategori() {
+                let kategori = document.forms['form_kategori']['kategori'].value;
+                if (kategori == "") {
+                    notif.style.display = 'block';
+                    pesan.innerText = 'Masukkan nama kategori!';
+
+                    if (notif.style.display = 'block') {
+                        setTimeout(function() {
+                            notif.style.opacity = '0'
+                            notif.style.transition = 'opacity 1s ease-in-out';
+                            setTimeout(function() {
+                                notif.style.display = 'none';
+                                $(notif).alert('close');
+                            }, 1000)
+                        }, 1000);
+                    }
+
+                    return false;
+                }
+            }
+
+            function validasiEditKategori() {
+                let kategori = document.forms['form_kategori']['kategori'].value;
+                if (kategori == "") {
+                    notif.style.display = 'block';
+                    pesan.innerText = 'Masukkan nama kategori!';
+
+                    if (notif.style.display = 'block') {
+                        setTimeout(function() {
+                            notif.style.opacity = '0'
+                            notif.style.transition = 'opacity 1s ease-in-out';
+                            setTimeout(function() {
+                                notif.style.display = 'none';
+                                $(notif).alert('close');
+                            }, 1000)
+                        }, 1000);
+                    }
+
+                    return false;
+                }
+            }
+
+            function validasiPosting() {
+                let judul = document.forms['form_posting']['judul'].value;
+                let thumb = document.forms['form_posting']['thumbnail'].value;
+                let kategori = document.forms['form_posting']['kategori'].value;
+
+                if (judul == "") {
+                    notif.style.display = 'block';
+                    pesan.innerText = 'Masukkan judul post!';
+
+                    if (notif.style.display = 'block') {
+                        setTimeout(function() {
+                            notif.style.opacity = '0'
+                            notif.style.transition = 'opacity 1s ease-in-out';
+                            setTimeout(function() {
+                                notif.style.display = 'none';
+                                $(notif).alert('close');
+                            }, 1000)
+                        }, 1000);
+                    }
+
+                    return false;
+                } else if (thumb == "") {
+                    notif.style.display = 'block';
+                    pesan.innerText = 'Masukkan thumbnail post!';
+
+                    if (notif.style.display = 'block') {
+                        setTimeout(function() {
+                            notif.style.opacity = '0'
+                            notif.style.transition = 'opacity 1s ease-in-out';
+                            setTimeout(function() {
+                                notif.style.display = 'none';
+                                $(notif).alert('close');
+                            }, 1000)
+                        }, 1000);
+                    }
+
+                    return false;
+                } else if (kategori == "") {
+                    notif.style.display = 'block';
+                    pesan.innerText = 'Pilih kategori post!';
+
+                    if (notif.style.display = 'block') {
+                        setTimeout(function() {
+                            notif.style.opacity = '0'
+                            notif.style.transition = 'opacity 1s ease-in-out';
+                            setTimeout(function() {
+                                notif.style.display = 'none';
+                                $(notif).alert('close');
+                            }, 1000)
+                        }, 1000);
+                    }
+
+                    return false;
+                }
+            }
+
+            function validasiEditPosting() {
+                let judul = document.forms['form_posting']['judul'].value;
+                let kategori = document.forms['form_posting']['kategori'].value;
+
+                if (judul == "") {
+                    notif.style.display = 'block';
+                    pesan.innerText = 'Masukkan judul post!';
+
+                    if (notif.style.display = 'block') {
+                        setTimeout(function() {
+                            notif.style.opacity = '0'
+                            notif.style.transition = 'opacity 1s ease-in-out';
+                            setTimeout(function() {
+                                notif.style.display = 'none';
+                                $(notif).alert('close');
+                            }, 1000)
+                        }, 1000);
+                    }
+
+                    return false;
+                } else if (kategori == "") {
+                    notif.style.display = 'block';
+                    pesan.innerText = 'Pilih kategori post!';
+
+                    if (notif.style.display = 'block') {
+                        setTimeout(function() {
+                            notif.style.opacity = '0'
+                            notif.style.transition = 'opacity 1s ease-in-out';
+                            setTimeout(function() {
+                                notif.style.display = 'none';
+                                $(notif).alert('close');
+                            }, 1000)
+                        }, 1000);
+                    }
+
+                    return false;
+                }
+            }
+
         </script>
     </body>
 </html>
