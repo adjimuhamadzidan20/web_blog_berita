@@ -19,7 +19,6 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/style_dashboard.css" rel="stylesheet" />
-        <script src="assets/ckeditor5-build-classic/ckeditor.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -60,12 +59,85 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-        <script src="assets/summernote/summernote-bs4.min.js"></script>
         <script src="assets/jquery/jquery.min.js"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
 
        <script>
-            ClassicEditor
-                .create( document.querySelector( '#artikel' ) )
+            CKEDITOR.ClassicEditor
+                .create( document.querySelector( '#artikel' ), {
+                    toolbar: {
+                        items: [
+                            'undo', 'redo', '|', 'exportPDF','exportWord', '|',
+                            'selectAll', '|',
+                            'bold', 'italic', 'underline', '|',
+                            'bulletedList', 'numberedList', '|',
+                            'outdent', 'indent',
+                            'alignment', '|',
+                            'link', 'blockQuote'
+                        ],
+                        shouldNotGroupWhenFull: true
+                    },
+                    list: {
+                        properties: {
+                            styles: true,
+                            startIndex: true,
+                            reversed: true
+                        }
+                    },
+                    // https://ckeditor.com/docs/ckeditor5/latest/features/link.html#custom-link-attributes-decorators
+                    link: {
+                        decorators: {
+                            addTargetToExternalLinks: true,
+                            defaultProtocol: 'https://',
+                            toggleDownloadable: {
+                                mode: 'manual',
+                                label: 'Downloadable',
+                                attributes: {
+                                    download: 'file'
+                                }
+                            }
+                        }
+                    },
+                    // The "superbuild" contains more premium features that require additional configuration, disable them below.
+                    // Do not turn them on unless you read the documentation and know how to configure them and setup the editor.
+                    removePlugins: [
+                        // These two are commercial, but you can try them out without registering to a trial.
+                        // 'ExportPdf',
+                        // 'ExportWord',
+                        'AIAssistant',
+                        'CKBox',
+                        'CKFinder',
+                        'EasyImage',
+                        // This sample uses the Base64UploadAdapter to handle image uploads as it requires no configuration.
+                        // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html
+                        // Storing images as Base64 is usually a very bad idea.
+                        // Replace it on production website with other solutions:
+                        // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/image-upload.html
+                        // 'Base64UploadAdapter',
+                        'MultiLevelList',
+                        'RealTimeCollaborativeComments',
+                        'RealTimeCollaborativeTrackChanges',
+                        'RealTimeCollaborativeRevisionHistory',
+                        'PresenceList',
+                        'Comments',
+                        'TrackChanges',
+                        'TrackChangesData',
+                        'RevisionHistory',
+                        'Pagination',
+                        'WProofreader',
+                        // Careful, with the Mathtype plugin CKEditor will not load when loading this sample
+                        // from a local file system (file://) - load this site via HTTP server if you enable MathType.
+                        'MathType',
+                        // The following features are part of the Productivity Pack and require additional license.
+                        'SlashCommand',
+                        'Template',
+                        'DocumentOutline',
+                        'FormatPainter',
+                        'TableOfContents',
+                        'PasteFromOfficeEnhanced',
+                        'CaseChange'
+                    ]
+                } )
                 .catch( error => {
                     console.error( error );
                 } );
@@ -224,6 +296,28 @@
 
                     return false;
                 }
+            }
+
+            function validasiPassword() {
+                let password = document.forms['form_ganti_password']['password'].value;
+
+                if (password == "") {
+                    notif.style.display = 'block';
+                    pesan.innerText = 'Masukkan password baru!';
+
+                    if (notif.style.display = 'block') {
+                        setTimeout(function() {
+                            notif.style.opacity = '0'
+                            notif.style.transition = 'opacity 1s ease-in-out';
+                            setTimeout(function() {
+                                notif.style.display = 'none';
+                                $(notif).alert('close');
+                            }, 1000)
+                        }, 1000);
+                    }
+
+                    return false;
+                } 
             }
 
         </script>

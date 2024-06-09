@@ -20,7 +20,7 @@
         <!-- main -->
         <div class="main">
             
-            <?php include 'route_artikel.php'; ?>
+            <?php include 'route/route_artikel.php'; ?>
 
         </div>
 

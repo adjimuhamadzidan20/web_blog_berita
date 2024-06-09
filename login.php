@@ -87,10 +87,7 @@
                                                 <label class="form-check-label" for="inputRememberme">Remember Me</label>
                                             </div>
                                             <div class="mt-4 mb-0">
-                                                <button class="btn btn-dark rounded-0 w-100 mb-3" type="submit">Masuk <i class="fas fa-sign-in"></i></button>
-                                                <center>
-                                                    <a class="small" href="password.html">Forgot Password?</a>
-                                                </center>
+                                                <button class="btn btn-dark rounded-0 w-100 mb-2" type="submit">Masuk <i class="fas fa-sign-in"></i></button>
                                             </div>
                                         </form>
                                     </div>

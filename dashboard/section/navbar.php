@@ -17,7 +17,12 @@
                 <span class="dropdown-item d-block d-lg-none"><?= $_SESSION['nama_admin']; ?></span>
             </li>
             <li class="d-block d-lg-none"><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="config/proses_logout.php"><i class="fas fa-sign-out fa-fw"></i> Logout</a></li>
+            <li>
+                <a class="dropdown-item" href="index.php?page=pengaturan_akun"><i class="fas fa-cog fa-fw"></i> Pengaturan Akun</a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="config/proses_logout.php"><i class="fas fa-sign-out fa-fw"></i> Logout</a>
+            </li>
         </ul>
     </li>
 </ul>
