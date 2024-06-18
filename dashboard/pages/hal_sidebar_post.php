@@ -6,7 +6,7 @@
 ?>
 
 <div class="container-fluid px-3">
-    <h2 class="mt-3">Sidebar Artikel</h2>
+    <h3 class="mt-3"><i class="fas fa-info-circle"></i> Sidebar Artikel</h3>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item">Dashboard</li>
         <li class="breadcrumb-item active">Sidebar Artikel</li>

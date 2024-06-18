@@ -6,7 +6,7 @@
 ?>
 
 <div class="container-fluid px-3">
-    <h2 class="mt-3">Postingan</h2>
+    <h3 class="mt-3"><i class="fas fa-newspaper"></i> Postingan</h3>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item">Dashboard</li>
         <li class="breadcrumb-item active">Postingan</li>
@@ -122,7 +122,7 @@
             </div>
             <div class="mb-3">
               <label for="exampleFormControlInput2" class="form-label">Thumbnail</label>
-              <input type="file" class="form-control" name="thumbnail" accept=".jpg" required></input>
+              <input type="file" class="form-control" name="thumbnail" required></input>
               <i class="text-muted small ket-thumbnail">*Ukuran file thumbnail maksimal 1MB</i>
             </div>
             <div class="mb-3">

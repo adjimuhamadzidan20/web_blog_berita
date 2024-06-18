@@ -63,12 +63,15 @@
     // pencarian data postingan
     if (isset($_POST['submit'])) {
         $kolomPencarian = $_POST['cari'];
-        
-        $querySql = "SELECT tb_post.id, tb_post.judul_post, tb_post.tanggal_post, tb_post.thumbnail, tb_post.artikel_post, 
-        tb_post.id_kategori, tb_kategori.kategori, tb_post.created_at FROM tb_post INNER JOIN tb_kategori 
-        ON tb_post.id_kategori = tb_kategori.id WHERE tb_post.judul_post LIKE '%$kolomPencarian%'";
-        
-        $dataPost = mysqli_query($koneksi, $querySql);
+        if (empty($kolomPencarian)) {
+            $dataPost;
+        } else {
+            $querySql = "SELECT tb_post.id, tb_post.judul_post, tb_post.tanggal_post, tb_post.thumbnail, tb_post.artikel_post, 
+            tb_post.id_kategori, tb_kategori.kategori, tb_post.created_at FROM tb_post INNER JOIN tb_kategori 
+            ON tb_post.id_kategori = tb_kategori.id WHERE tb_post.judul_post LIKE '%$kolomPencarian%'";
+            
+            $dataPost = mysqli_query($koneksi, $querySql);
+        }
     }
 ?>
 

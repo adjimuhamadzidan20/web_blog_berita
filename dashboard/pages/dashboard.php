@@ -13,7 +13,7 @@
 ?>
 
 <div class="container-fluid px-3">
-    <h2 class="mt-3">Dashboard</h2>
+    <h3 class="mt-3 text-uppercase">Selamat Datang <?= $_SESSION['nama_admin']; ?>!</h3>
     <ol class="breadcrumb mb-3">
         <li class="breadcrumb-item active">Dashboard</li>
     </ol>

@@ -5,7 +5,7 @@
 ?>
 
 <div class="container-fluid px-3">
-    <h2 class="mt-3">Pengaturan Akun</h2>
+    <h3 class="mt-3"><i class="fas fa-cog fa-fw"></i> Pengaturan Akun</h3>
     <ol class="breadcrumb mb-3">
         <li class="breadcrumb-item active">Pengaturan Akun Admin</li>
     </ol>

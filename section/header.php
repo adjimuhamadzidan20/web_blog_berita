@@ -3,13 +3,13 @@
 
   $sql = "SELECT * FROM tb_kategori";
   $res = mysqli_query($koneksi, $sql);
-
+  $jmlDataKat = mysqli_affected_rows($koneksi);
 ?>
 
 <div class="header">
   <div class="judul-web-berita">
     <div class="title">
-      <h1 class="text-uppercase">Berita Lokal</h1>
+      <h2 class="text-uppercase">Berita Lokal</h2>
     </div>
     <div class="sub-title">
       <p>Semua informasi terupdate ada disini</p>
@@ -38,11 +38,17 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
             <?php  
-              while ($data = mysqli_fetch_assoc($res)) :
+              if ($jmlDataKat == 0) {
+            ?>
+              <li><a class="dropdown-item" href="#">Kategori belum tersedia..</a></li>
+            <?php
+              } else {  
+                while ($data = mysqli_fetch_assoc($res)) :
             ?>
               <li><a class="dropdown-item" href="index.php?kategori=<?= $data['kategori']; ?>"><?= $data['kategori']; ?></a></li>
             <?php  
-              endwhile;
+                endwhile;
+              }
             ?>
           </ul>
         </li>

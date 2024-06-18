@@ -7,7 +7,7 @@
 ?>
 
 <div class="container-fluid px-3">
-    <h2 class="mt-3">Komentar</h2>
+    <h3 class="mt-3"><i class="fas fa-comments"></i> Komentar</h3>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item">Dashboard</li>
         <li class="breadcrumb-item active">Komentar</li>
@@ -86,11 +86,6 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                           </div>
                                           <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h3><?= $data['judul_post']; ?></h3>
-                                                </div>
-                                            </div>
                                             <div class="row">
                                                 <div class="col">
                                                     <p>Dikomentari pada tanggal <?= $data['tanggal_komentar']; ?></p>

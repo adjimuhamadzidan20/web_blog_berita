@@ -37,7 +37,7 @@
     <div class="col">
       <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        Edit Data Kategori
+        Edit Data Postingan
       </div>
       <div class="card-body">
         <form action="config/proses_postingan.php?proses=edit" method="post" enctype="multipart/form-data" name="form_posting" onsubmit="return validasiEditPosting()" novalidate>
@@ -52,7 +52,7 @@
           <div class="mb-3">
             <label for="exampleFormControlInput2" class="form-label">Thumbnail</label><br>
             <img src="thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail" width="120" height="120" class="mb-2 img-thumbnail">
-            <input type="file" class="form-control" name="thumbnail" accept=".jpg"></input>
+            <input type="file" class="form-control" name="thumbnail"></input>
             <i class="text-muted small ket-thumbnail">*Ukuran file thumbnail maksimal 1MB</i>
           </div>
           <div class="mb-3">

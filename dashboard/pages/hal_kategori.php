@@ -4,7 +4,7 @@
 ?>
 
 <div class="container-fluid px-3">
-    <h2 class="mt-3">Kategori</h2>
+    <h3 class="mt-3"><i class="fas fa-tasks"></i> Kategori</h3>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item">Dashboard</li>
         <li class="breadcrumb-item active">Kategori</li>

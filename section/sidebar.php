@@ -5,7 +5,6 @@
     tb_post.artikel_post, tb_sidebar.created_at FROM tb_sidebar INNER JOIN tb_post ON tb_sidebar.id_sidepost = tb_post.id";
     $query = mysqli_query($koneksi, $sql);
     $jmlData = mysqli_affected_rows($koneksi);
-    
 ?>    
 
 <div class="side-bar">

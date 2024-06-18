@@ -9,9 +9,8 @@
     background-image: url('../picture/pexels-kaboompics-6335.jpg');
     background-size: cover;
     background-position: center;
-    padding: 33px 0 33px 0;
     color: white;
-    height: 220px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
