@@ -21,12 +21,15 @@
 
         // posisi hal aktif
         $posisiHal = (isset($_GET['hal'])) ? $_GET['hal'] : 1;
+        $kategoriHal = (isset($_GET['kategori']) ) ? $_GET['kategori'] : '';
         // data awal hal
         $awalData = ($jmlDataHal * $posisiHal) - $jmlDataHal;
 
         $sqlLimit = "SELECT tb_post.id, tb_post.judul_post, tb_post.tanggal_post, tb_post.thumbnail, tb_post.artikel_post, 
         tb_post.id_kategori, tb_kategori.kategori, tb_post.created_at FROM tb_post INNER JOIN tb_kategori 
-        ON tb_post.id_kategori = tb_kategori.id WHERE kategori = '$kategori' LIMIT $awalData, $jmlDataHal";
+        ON tb_post.id_kategori = tb_kategori.id WHERE kategori = '$kategoriHal' LIMIT $awalData, $jmlDataHal";
+
+        $jmlDatKategori = mysqli_affected_rows($koneksi);
     } 
     else {
         $sql = "SELECT tb_post.id, tb_post.judul_post, tb_post.tanggal_post, tb_post.thumbnail, tb_post.artikel_post, 
@@ -45,7 +48,7 @@
         $jmlHal = ceil($jmlData / $jmlDataHal) + 1;
 
         // posisi hal aktif
-        $posisiHal = (isset($_GET['hal'])) ? $_GET['hal'] : 1;
+        $posisiHal = (isset($_GET['hal']) ) ? $_GET['hal'] : 1;
         // data awal hal
         $awalData = ($jmlDataHal * $posisiHal) - $jmlDataHal;
 
@@ -76,16 +79,77 @@
 ?>
 
 <?php  
-    $jmlPost = mysqli_affected_rows($koneksi);
-    if ($jmlPost == 0) {
+    if (isset($_GET['kategori'])) {
+?>
+    <?php
+        if ($jmlDatKategori == 0) { 
+    ?>
+        <div class="articel">
+            Konten artikel dengan kategori tersebut tidak tersedia..
+        </div>
+    <?php
+        } else {
+    ?>
+        <div class="articel h6 mb-2">Kategori: <?= $kategoriHal; ?></div>
+    <?php 
+            foreach ($dataPost as $data) : 
+    ?>
+        <div class="articel">
+            <div class="title-articel">
+                <h3><?= $data['judul_post']; ?></h3>
+            </div>
+            <div class="time-post">
+                <p><i class="bi bi-collection"></i> <?= $data['kategori']; ?> | <i class="bi bi-calendar3"></i> <?= $data['tanggal_post']; ?></p>
+            </div>
+            <div>
+                <img class="pict img-thumbnail" src="dashboard/thumbnail/<?= $data['thumbnail']; ?>" alt="thumbnail">
+            </div>
+            <div class="desc">
+                <div class="artikel-desc">
+                    <?= $data['artikel_post']; ?>
+                </div>
+                <a href="index.php?id_artikel=<?= $data['id']; ?>"><i class="bi bi-arrow-right-square me-2"></i>Selengkapnya</a>
+            </div>
+        </div>
+    <?php 
+            endforeach;
+        } 
+    ?>
+    <!-- paginasi -->
+    <nav aria-label="...">
+        <ul class="pagination pagination-md justify-content-center">
+        <?php  
+            for ($i = 1; $i < $jmlHal; $i++) :
+                if ($i == $posisiHal && $kategoriHal == $_GET['kategori']) { 
+        ?>
+          <li class="page-item active" aria-current="page">
+            <a href="index.php?kategori=<?= $kategoriHal ?>&hal=<?= $i; ?>" class="page-link border-dark" style="background-color: black;"><?= $i; ?></a>
+          </li>
+            <?php  
+                } else {
+            ?>
+          <li class="page-item">
+            <a class="page-link text-body" href="index.php?kategori=<?= $kategoriHal ?>&hal=<?= $i; ?>"><?= $i; ?></a>
+          </li>
+        <?php  
+                }
+            endfor;
+        ?>
+        </ul>
+    </nav>
+<?php 
+    } else { 
+        $jmlPost = mysqli_affected_rows($koneksi);
+        if ($jmlPost == 0) {
 ?>
     <div class="articel">
         Konten artikel tidak tersedia..
     </div>
-<?php
-    } else {
-        foreach ($dataPost as $data) :
-?>
+
+    <?php
+        } else {
+            foreach ($dataPost as $data) :
+    ?>
     <div class="articel">
         <div class="title-articel">
             <h3><?= $data['judul_post']; ?></h3>
@@ -103,30 +167,35 @@
             <a href="index.php?id_artikel=<?= $data['id']; ?>"><i class="bi bi-arrow-right-square me-2"></i>Selengkapnya</a>
         </div>
     </div>
+
+    <?php  
+            endforeach;
+        }
+    ?>
+    
+    <!-- paginasi -->
+    <nav aria-label="...">
+        <ul class="pagination pagination-md justify-content-center">
+        <?php  
+            for ($i = 1; $i < $jmlHal; $i++) :
+                if ($i == $posisiHal) { 
+        ?>
+          <li class="page-item active" aria-current="page">
+            <a href="index.php?hal=<?= $i; ?>" class="page-link border-dark" style="background-color: black;"><?= $i; ?></a>
+          </li>
+            <?php  
+                } else {
+            ?>
+          <li class="page-item">
+            <a class="page-link text-body" href="index.php?hal=<?= $i; ?>"><?= $i; ?></a>
+          </li>
+        <?php  
+                }
+            endfor;
+        ?>
+        </ul>
+    </nav>
+
 <?php  
-        endforeach;
     }
 ?>
-
-<!-- paginasi -->
-<nav aria-label="...">
-    <ul class="pagination pagination-md justify-content-center">
-    <?php  
-        for ($i = 1; $i < $jmlHal; $i++) :
-            if ($i == $posisiHal) { 
-    ?>
-      <li class="page-item active" aria-current="page">
-        <a href="index.php?hal=<?= $i; ?>" class="page-link border-dark" style="background-color: black;"><?= $i; ?></a>
-      </li>
-        <?php  
-            } else {
-        ?>
-      <li class="page-item">
-        <a class="page-link text-body" href="index.php?hal=<?= $i; ?>"><?= $i; ?></a>
-      </li>
-    <?php  
-            }
-        endfor;
-    ?>
-    </ul>
-</nav>
